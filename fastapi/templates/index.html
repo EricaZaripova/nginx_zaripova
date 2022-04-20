@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FastApi</title>
+</head>
+<body>
+    <h2> Ето FastApi </h2>
+{% if number == None %}
+    <h3>Введите число в адресную строку, чтобы увидеть его квадрат</h3>
+{% else %}
+    <h3>Ваше число в квадрате {{ number*number }}</h3>
+{% endif %}
+
+</body>
+</html>

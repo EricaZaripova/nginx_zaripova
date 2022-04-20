@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  defort_flask:
+    build: ./flask
+    expose:
+      - 5000
+    ports:
+      - "5000:5000"
+    hostname: flask
+    domainname: flask.com
+
+  fast_api:
+    build: ./fastapi
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+    hostname: fast_api
+    domainname: fast_api.com
+
+  nginx:
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      - defort_flask
+      - fast_api
+    extra_hosts:
+      - "flask_app.com:127.0.0.1"
+      - "flask_app:127.0.0.1"
+      - "www.flask_app.com:127.0.0.1"
+      - "fast_api_app.com:127.0.0.1"
+      - "fast_api_app:127.0.0.1"
+      - "www.fast_api_app.com:127.0.0.1"
+    environment:
+      NGINX_HOST: foobar.com
+      NGINX_PORT: 80
